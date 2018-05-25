@@ -5,22 +5,31 @@ using System.Text;
 
 namespace Scheduling
 {
-    class FirstComeFirstServedPolicy : SchedulingPolicy
-    {
+	class FirstComeFirstServedPolicy : SchedulingPolicy
+	{
 
-        public override int NextProcess(Dictionary<int, ProcessTableEntry> dProcessTable)
-        {
-            throw new NotImplementedException();
-        }
+		Queue<int> readyProcessList = new Queue<int>();
 
-        public override void AddProcess(int iProcessId)
-        {
-            throw new NotImplementedException();
-        }
+		public override int NextProcess(Dictionary<int, ProcessTableEntry> dProcessTable)
+		{
+			if (readyProcessList.Count == 0) //if the queue is empty so we want to return the first item from the table otherwise we will get error
+			{
+				return dProcessTable[0].ProcessId;
+			}
 
-        public override bool RescheduleAfterInterrupt()
-        {
-            throw new NotImplementedException();
-        }
-    }
+			int pid = readyProcessList.Dequeue();
+			//readyProcessList.RemoveAt(0); //removing the oldest process from the start of the list
+			return pid;
+		}
+
+		public override void AddProcess(int iProcessId)
+		{
+			readyProcessList.Enqueue(iProcessId); //entering the newest process into the end of the list
+		}
+
+		public override bool RescheduleAfterInterrupt()
+		{
+			return false;
+		}
+	}
 }
