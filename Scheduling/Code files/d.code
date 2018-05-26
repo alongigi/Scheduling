@@ -13,4 +13,3 @@ if i < 5
 	goto L1
 L:
 yield
-goto L

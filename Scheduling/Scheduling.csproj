@@ -58,7 +58,6 @@
     <Compile Include="OutputConsole.Designer.cs">
       <DependentUpon>OutputConsole.cs</DependentUpon>
     </Compile>
-    <Compile Include="PrioritizedScheduling.cs" />
     <Compile Include="ProcessConsole.cs" />
     <Compile Include="ProcessTableEntry.cs" />
     <Compile Include="Program.cs" />
